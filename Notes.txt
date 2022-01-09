@@ -1,0 +1,25 @@
+Challanges of existing infrastructure:
+--------------------------------------
+-> Imperative
+    -> Document
+    -> step-by-step
+-> Scalability
+-> Mutable Infra    
+    - History
+    - Incremental
+-> Cloud Agnostic
+
+What is Terraform?
+------------------
+- Terraform is an IT infrastructure automation tool for building, changing, and versioning infrastructure safely and efficiently
+- Terraform can manage existing as well as custom in-house solutions
+- It turns your infrastructure as code IAC i.e, your computing environment has some of the same attributes as your application:
+    - your infrastructure is versionable.
+    - your infrastructure is reusable.
+    - your infrastructure is testable.
+    - Minimizes errors and security violations
+- you only need to tell what the desired state should be, not how to achieve it
+- Terraform is cloud-agnostic (Not Fully Agnostic).
+
+
+
