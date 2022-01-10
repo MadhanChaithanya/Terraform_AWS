@@ -39,8 +39,79 @@ Features of Terraform:
 
 
 Terraform Works:
+-----------------
 IAAC(HCL) -> STATE -> PLAN -> GRAPH -> APPLY (AWS, Azure, GCP, VMWare)
 
+Terraform Workflow:
+-------------------
+Write:              PLAN                                    APPLY
+IAAC            ->  Preview changes Before Applying     ->  Provison Reproducible Infrastructure
 
 
+Terraform Vs Ansible Vs Puppet Vs Chef
 
+configuration Management Vs Provisioning
+---------------------------------------
+- Chef, Puppet, Ansible, and SaltStack are all configuration management tools, which means they are designed to install and 
+manage software on exixting servers.
+- CloudFormation and Terraform are Provisioning tools, which means they are designed to provision the servers themselves (as well as the rest of your infrastructure), like load balancers, databasesm networking configuration, etc)
+- With Docker and Packer, you can create images that have all the software your server needs already installed and configured.
+- once you have such an image, all you need is a server to run it and you can provision a bunch of servers using Terraform.
+
+Mutable Infrastructure vs Immutable Infrastructure:
+---------------------------------------------------
+- configuration management tools such as Chef, Puppet, Ansible, ans SaltStack typically default to a Mutable infrastructure paradigm.
+    ex: if you tell a CM tool to install a new version of an package, it'll run the software update on your existing servers and the changes will happen in-place.
+    over time, as you apply more and more updates, each server builds up a unique History of changes
+- this often leads to a phenomenon knows as configuration drift, where eah server becomes slightly different than all the others.
+
+- if you're using a Provisioning tool such as Terraform to deploy machine images created by Docker or Packer, then every "Change"
+is actually a deployment of a new server
+    ex: to deploy a new version of a package, you would create a new image using Packer or Docker with the new version of package already installed, 
+    deploy that image accross a set of totally new servers, and then undeploy the old servers.
+
+Procedural vs Declarative
+-------------------------
+- Chef and Ansible encourage a Procedural style where you Write code that specifies, step-by-step, how to achieve some desired end state.
+- Terraform, CloudFormation, SaltStack and Puppet all encourage a more Declarative style where you Write code that specifies your desired end state, and the IAC tool itself is responsible for figuring out how to achieve that state
+
+Master Vs Masterless
+---------------------
+- Chef, Puppet and SaltStack all require that you run a master server for storing the state of your infrastructure and distributing updates
+- Ansible, CloudFormation are all masterless by default. or to be more accurate, some of them may rely on a master server, but
+it's already part of the infrastructure you're using and not an extra piece you have to manage
+    - Terraform communicates with cloud Providers using the cloud providers's API's
+    - Ansible Works by connecting directly to each server over SSH.
+
+Agent Versus Agentless
+----------------------
+- Chef, Puppet and SaltStack all require you to install agent software on each server you want to configure.
+- Ansible, CloudFormation do not require you to install any extra agents. or to be more accurate, some of them require agents,
+but these are typically already installed as part of the infrastructure you're using 
+    - with Ansible, your servers need to run SSH Daemon, which is common to run on most servers anyway.
+    - as a user of Terraform, you just issue commands and the cloud provider's agents take care of installing, managing,
+    and authenticating agent software on each of their physical servers
+
+Large Community vs Small Community:
+-----------------------------------
+- whenever you pick a technology, you are also picking a Community
+- the Community determines how may people contribute to the project, how many plug-ins, integrations, and extensions are
+available, how easy it is to find help online.
+
+Mature Versus Cutting Edge:
+- Another key factor to consider when picking any technology is maturity
+                    Initial Release
+                    ---------------
+        Puppet          2005
+        Chef            2009
+        CloudFormation  2011
+        Ansible         2012
+        Terraform       2014
+
+using multiple tools together
+-----------------------------
+- the reality is that you will likely need to use multiple tools to build your infrastructure
+- here are 3 common combinations I've seen work well at a number of companies:
+    - Provisioning plus configuration management - Terraform and Ansible
+    - Provisioning plus server templating - Terraform and Packer
+    - Provisioning plus server templating plus orchestration - Terraform, Docker, & Kubernetes.
