@@ -11,3 +11,42 @@ will figure out how to create it
 - Lists values are made with braces ([]), for ex: ["foo", "bar", "baz"]
 - Maps can be made with braces({}) and colons (:), for example {"foo":"bar", "bar":"baz"}
 - strings can interpolate other values using syntax wrapped in ${}, for ex: ${var.foo}
+
+Provider:
+--------
+- providers are API's which interact with the infrastructure components like AWS, Docker, Kubernetes
+- Manages the lifecycle of the resources
+- providers generally are an IAAS (eg. AWS, GCP, Azure, OpenStack),
+                             PAAS (eg. Heroku),
+                             SASS (eg. Terraform Cloud, DNSimple, CloudFare)
+syntax:
+-------
+provider <PROVIDER> {
+    [CONFIG...]
+             ARGS...
+}
+
+-> where PROVIDER is the name of a provider (eg., Docker, AWS),
+-> CONFIG consists of one or more arguments thatare specific to that provider (eg. host for Docker or Region for AWS).
+
+Resources:
+-----------
+- resources are the components of your infrastructure.
+- it might be some low level component such as a physical server, virtual machine, or container. 
+or it can be a higher level component such as an email provider, DNS record, or database provider
+- the resource block creates a resource of the given TYPE (first parameter) and NAME (second parameter).
+the combination of the type and name must be unique.
+- within the block is the configuration for each resource. the configuration is dependent on the type
+
+syntax:
+-------
+resource <PROVIDER_TYPE> <NAME> {
+    [CONFIG...]
+        ARGS...
+}
+
+-> where PROVIDER is the name of a provider (eg. AWS),
+-> TYPE is the type of resources to create in that provider(eg. instance),
+-> NAME is an identifier you can use throughout the Terraform code to refer this resource(eg. example),
+-> CONFIG consists of one or more arguments that are specific to that resource 
+(eg. ami="ami-d54dsafdcdf8g4f4v6")
