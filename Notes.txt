@@ -21,5 +21,26 @@ What is Terraform?
 - you only need to tell what the desired state should be, not how to achieve it
 - Terraform is cloud-agnostic (Not Fully Agnostic).
 
+Features of Terraform:
+-> Infrastructure as Code:
+    - Infrastructure is described using a high-level configuration syntax.
+    - Provides single unified syntax.
+
+-> Execution Plans
+    - Terraform has a "planning" step where it generates an execution plan
+    - The execution plan shows what Terraform will do before making the actual changes
+
+-> Resource Graph:
+    - Terraform builds a graph of all your resources, and parallelizes the creation and modification of any non-deployment resources.
+    - Terraform build infrastructure as efficiently as possible
+-> Change Automation:
+    - Complex change sets can be applied to your infrastructure with minimal human interaction
+    - with the previously mentioned execution plan and resource graph, you know exactly what Terraform will change and in what order, avoiding many possible human errors.
+
+
+Terraform Works:
+IAAC(HCL) -> STATE -> PLAN -> GRAPH -> APPLY (AWS, Azure, GCP, VMWare)
+
+
 
 
