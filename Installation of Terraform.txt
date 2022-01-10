@@ -1,0 +1,14 @@
+Setup Terraform on AWS (Ubuntu Server):
+---------------------------------------
+$ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+$ sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com
+    $(lsb_release -cs) main"
+$ sudo apt-get update && sudo apt-get install terraform
+
+
+https://www.terraform.io/downloads.html
+
+$ curl -O https://releases.hashicorp.com/terraform/0.11.0/terraform_0.11.0_linux_amd64.zip
+$ apt install -y unzip
+$ unzip terraform_0.11.0_linux_amd64.zip-d /usr/local/bin/
+$ terraform version
