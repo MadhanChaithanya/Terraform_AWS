@@ -1,0 +1,13 @@
+HCL (HashiCorp Configuration Language):
+---------------------------------------
+- Terraform code is written in a Language called HCL in files with the extension .tf
+- Terraform can also read JSON configurations that is named with the .tf.json
+- it is an Declarative Language, so your goal is to describe the infrastructure you want, and Terraform
+will figure out how to create it
+- HCL syntax is composed of blocks that define a configuration in  Terraform
+- blocks are comprised of key = value pairs.
+- single line comments start with # and Multi-line are commented with /* and */
+- strings are in double-quotes, boolean values: true, false
+- Lists values are made with braces ([]), for ex: ["foo", "bar", "baz"]
+- Maps can be made with braces({}) and colons (:), for example {"foo":"bar", "bar":"baz"}
+- strings can interpolate other values using syntax wrapped in ${}, for ex: ${var.foo}
